@@ -1,0 +1,19 @@
+.btn {
+  @apply font-medium rounded transition-all
+}
+
+.btn.sm {
+  @apply px-2 py-1 text-base
+}
+
+.btn.md {
+  @apply px-4 py-2 text-lg
+}
+
+.btn.lg {
+  @apply px-6 py-3 text-xl
+}
+
+.primary.contained {
+  @apply bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700
+}

@@ -1,0 +1,11 @@
+.btn {
+  @apply px-4 py-2 text-white text-lg font-medium rounded shadow-zinc-border cursor-pointer transition-all hover:bg-blue-600 active:bg-blue-700
+}
+
+.input {
+  @apply hidden
+}
+
+.input:checked + .btn {
+  @apply bg-blue-500
+}
