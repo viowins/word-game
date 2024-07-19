@@ -13,6 +13,7 @@ const GameWrapper = () => {
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
 
   const handleOtpChange = (value: string) => {
+    console.log(otp)
     if (value.length === numLetters && words != null && value == words[currentWord].word) {
       dispatch(nextWord())
       setOtp('')
