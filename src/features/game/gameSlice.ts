@@ -4,7 +4,7 @@ import Words from "../../types/words"
 
 export interface CounterState {
   category: string
-  page: 0 | 1 | 2
+  page: number
   numLetters: number
   words: Words[] | null
   totalWords: number
