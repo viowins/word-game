@@ -4,6 +4,6 @@
 
 @layer base {
   body {
-    @apply grid place-items-center min-h-screen bg-zinc-900 text-zinc-100
+    @apply grid place-items-center md:min-h-screen bg-zinc-900 text-zinc-100
   }
 }

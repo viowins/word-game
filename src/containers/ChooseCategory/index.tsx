@@ -33,7 +33,7 @@ const ChooseCategoryContainer = () => {
           <h1 className="text-4xl text-center font-semibold mb-6">
             Select Category
           </h1>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center justify-center flex-wrap gap-4">
             {categories.map((cat: string, i) => (
               <React.Fragment key={i}>
                 <ButtonRadio

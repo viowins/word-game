@@ -18,17 +18,17 @@ function GameContainer() {
   return (
     <AnimatePresence mode="wait">
       {page === 0 && (
-        <motion.div key="choose-category" {...commonAnimationProps}>
+        <motion.div className="mt-20 md:mt-0" key="choose-category" {...commonAnimationProps}>
           <ChooseCategoryContainer />
         </motion.div>
       )}
       {page === 1 && (
-        <motion.div key="game-wrapper" {...commonAnimationProps}>
+        <motion.div className="mt-20 md:mt-0" key="game-wrapper" {...commonAnimationProps}>
           <GameWrapper />
         </motion.div>
       )}
       {page === 2 && (
-        <motion.div key="final-container" {...commonAnimationProps}>
+        <motion.div className="mt-20 md:mt-0" key="final-container" {...commonAnimationProps}>
           <FinalContainer />
         </motion.div>
       )}
