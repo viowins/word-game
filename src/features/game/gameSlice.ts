@@ -4,11 +4,13 @@ import Words from "../../types/words"
 
 export interface CounterState {
   category: string
-  page: number
+  page: 0 | 1 | 2
   numLetters: number
   words: Words[] | null
   totalWords: number
   currentWord: number
+  point: number,
+  maxNumLetters?: number
 }
 
 const initialState: CounterState = {
@@ -17,7 +19,8 @@ const initialState: CounterState = {
   numLetters: 3,
   words: null,
   totalWords: 0,
-  currentWord: 0
+  point: 0,
+  currentWord: 0,
 }
 
 export const gameSlice = createSlice({
@@ -26,6 +29,17 @@ export const gameSlice = createSlice({
   reducers: {
     chooseCategory: (state, action: PayloadAction<CounterState["category"]>) => {
       state.category = action.payload
+      switch (state.category) {
+        case "animal" || "country" || "food":
+          state.maxNumLetters = 9
+          break;
+        case "plant":
+          state.maxNumLetters = 8
+          break;
+        default:
+          state.maxNumLetters = 10
+          break;
+      }
     },
     setPage: (state, action: PayloadAction<CounterState["page"]>) => {
       state.page = action.payload
@@ -40,6 +54,12 @@ export const gameSlice = createSlice({
     },
     nextWord: (state) => {
       state.currentWord += 1
+      if (state.point == 0) {
+        state.point = 10 * state.numLetters
+      }
+      else {
+        state.point += 10 * state.numLetters
+      }
     },
   },
 })

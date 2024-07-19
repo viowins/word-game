@@ -1,12 +1,12 @@
-import { useSelector } from "react-redux"
-import type { RootState } from "../../stores"
-import ChooseCategoryContainer from "../ChooseCategory"
-import GameWrapper from "../GameWrapper"
-import { motion, AnimatePresence } from "framer-motion"
-
+import { useSelector } from "react-redux";
+import type { RootState } from "../../stores";
+import ChooseCategoryContainer from "../ChooseCategory";
+import GameWrapper from "../GameWrapper";
+import FinalContainer from "../Final";
+import { motion, AnimatePresence } from "framer-motion";
 
 function GameContainer() {
-  const { page } = useSelector((state: RootState) => state.game)
+  const { page } = useSelector((state: RootState) => state.game);
 
   const commonAnimationProps = {
     initial: { opacity: 0, scale: 0.8 },
@@ -15,26 +15,25 @@ function GameContainer() {
     transition: { duration: 0.3 },
   };
 
-  return(
+  return (
     <AnimatePresence mode="wait">
       {page === 0 && (
-        <motion.div
-          key="choose-category"
-          {...commonAnimationProps}
-        >
+        <motion.div key="choose-category" {...commonAnimationProps}>
           <ChooseCategoryContainer />
         </motion.div>
       )}
       {page === 1 && (
-        <motion.div
-          key="game-wrapper"
-          {...commonAnimationProps}
-        >
-        <GameWrapper />
+        <motion.div key="game-wrapper" {...commonAnimationProps}>
+          <GameWrapper />
         </motion.div>
-        )}
+      )}
+      {page === 2 && (
+        <motion.div key="final-container" {...commonAnimationProps}>
+          <FinalContainer />
+        </motion.div>
+      )}
     </AnimatePresence>
-  )
+  );
 }
 
-export default GameContainer
+export default GameContainer;
