@@ -43,19 +43,6 @@ const GameWrapper = () => {
     }
   }, [currentWord])
 
-  // useEffect(() => {
-  //   if (currentWord > totalWords && words != null && totalWords > 0) {
-  //     dispatch(changeNumLetters(numLetters + 1))
-  //     console.log(currentWord, totalWords)
-  //   }
-  // }, [currentWord, words])
-  
-  // useEffect(() => {
-  //   if (words == null) {
-  //     dispatch(changeNumLetters(numLetters + 1))
-  //   }
-  // }, [words])
-
   useEffect(() => {
     console.log(category, numLetters, words, totalWords, currentWord)
   }, [category, numLetters, words, totalWords, currentWord])
