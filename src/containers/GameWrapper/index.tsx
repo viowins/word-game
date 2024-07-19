@@ -13,7 +13,6 @@ const GameWrapper = () => {
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
 
   const handleOtpChange = (value: string) => {
-    console.log(otp)
     if (value.length === numLetters && words != null && value == words[currentWord].word) {
       dispatch(nextWord())
       setOtp('')
@@ -57,7 +56,7 @@ const GameWrapper = () => {
           transition={{ duration: 0.2 }}
           className="flex flex-col items-center"
         >
-          <h1 className="text-2xl text-center font-semibold mb-4">{words[currentWord]?.hint}</h1>
+          <h1 className="text-2xl text-center font-semibold mb-4">{words[currentWord]?.hint} {otp}</h1>
           <Input length={numLetters} correct={isCorrect} onChange={handleOtpChange} />
         </motion.div>
       )}
