@@ -25,22 +25,29 @@ const GameWrapper = () => {
   const dispatch = useDispatch();
   const [otp, setOtp] = useState<string>("");
   const [isCorrect, setIsCorrect] = useState<boolean>(false);
-  console.log(point)
 
   const handleOtpChange = (value: string) => {
     if (
       value.length === numLetters &&
-      words != null &&
-      value == words[currentWord].word
+      words != null
     ) {
-      dispatch(nextWord());
-      setOtp("");
-      setIsCorrect(true);
+      if (value.toLocaleLowerCase() == words[currentWord].word) {
+        dispatch(nextWord());
+        setOtp("");
+        setIsCorrect(true);
+      } else {
+        setOtp("");
+        setIsCorrect(false);
+      }
     } else {
       setOtp(value);
       isCorrect && setIsCorrect(false);
     }
   };
+
+  useEffect(() => {
+    console.log(otp)
+  },[otp])
 
   useEffect(() => {
     if (numLetters > Number(maxNumLetters)) {
@@ -83,10 +90,6 @@ const GameWrapper = () => {
       dispatch(changeNumLetters(numLetters + 1));
     }
   }, [currentWord]);
-
-  // useEffect(() => {
-  //   console.log(category, numLetters, words, totalWords, currentWord);
-  // }, [category, numLetters, words, totalWords, currentWord]);
 
   return (
     <AnimatePresence mode="wait">

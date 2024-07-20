@@ -12,7 +12,7 @@ const OTPInput: React.FC<OTPInputProps> = ({ length, correct, onChange }) => {
   const inputs = useRef<HTMLInputElement[]>([]);
 
   const handleChange = (element: HTMLInputElement, index: number) => {
-    const value = element.value;
+    const value = element.value.toLocaleLowerCase();
     if (/[^a-zA-Z]/.test(value)) return;
 
     const newOtp = [...otp];
@@ -42,15 +42,27 @@ const OTPInput: React.FC<OTPInputProps> = ({ length, correct, onChange }) => {
     inputs.current[0].focus();
   }, []);
 
+  useEffect(() => {
+    if (otp.filter(i => i != "").length == length) {
+      setTimeout(() => {
+        setOtp(Array(length).fill(''));
+        inputs.current[0].focus();
+      }, 400);
+    }
+  }, [otp])
+
   return (
-    <div className="flex items-center gap-4 flex-nowrap">
+    <div className={cn(
+      "flex items-center gap-4 flex-nowrap",
+      !correct && otp.filter(i => i != "").length == length ? 'animate-shake' : '',
+      )}>
       {otp.map((_, index) => (
         <input
           key={index}
           type="text"
           className={cn(
-            'w-10 h-10 bg-zinc-700 text-xl text-center font-semibold uppercase border border-zinc-700 rounded !outline-none transition-all focus:shadow-blue-glow focus:border-blue-500',
-            otp.length === length && otp[index] == "" && 'border-red-500'
+            'w-10 h-10 bg-zinc-700 text-xl text-center font-semibold uppercase border rounded !outline-none transition-all',
+            !correct && otp.filter(i => i != "").length == length ? 'border-red-500 focus:shadow-red-glow' : 'border-zinc-700 focus:shadow-blue-glow focus:border-blue-500',
           )}
           value={otp[index]}
           onChange={(e) => handleChange(e.target, index)}
